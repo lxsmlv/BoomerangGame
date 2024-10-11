@@ -9,6 +9,7 @@ class Enemy {
 
   async initialize() {
     this.skin = await emojiEnemies();
+
   }
 
   moveLeft() {

@@ -15,19 +15,19 @@ class Game {
     this.trackLength = trackLength;
     this.enemy = new Enemy({ position: 30 });
     this.boomerang = new Boomerang({ position: 0 });
-    this.hero = new Hero({ position: 5, boomerang: this.boomerang }); // Герою можно аргументом передать бумеранг.
+    this.hero = new Hero({ position: 0, boomerang: this.boomerang });
     this.view = new View();
     this.track = [];
-    this.regenerateTrack();
     this.killedEnemy = 0;
     this.gameTime = 0;
+    this.regenerateTrack();
   }
 
   regenerateTrack() {
     this.track = new Array(this.trackLength).fill(' ');
-    this.track[this.hero.position] = this.hero.skin;
     this.track[this.enemy.position] = this.enemy.skin;
     this.track[this.boomerang.position] = this.boomerang.skin;
+    this.track[this.hero.position] = this.hero.skin;
   }
 
   check() {
