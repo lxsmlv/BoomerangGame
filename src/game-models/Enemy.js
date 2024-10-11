@@ -9,7 +9,12 @@ class Enemy {
 
   async initialize() {
     this.skin = await emojiEnemies();
+  }
 
+  static async create() {
+    const enemy = new Enemy(); // Создаём экземпляр врага
+    await enemy.initialize(); // Инициализируем его
+    return enemy; // Возвращаем инициализированный экземпляр
   }
 
   moveLeft() {

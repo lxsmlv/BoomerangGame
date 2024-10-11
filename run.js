@@ -1,13 +1,9 @@
-// Основной файл.
-// Запускает игру.
 const Game = require('./src/Game');
+const Enemy = require('./src/game-models/Enemy'); // Убедитесь, что путь правильный
 
-// Импортируем и запускаем управление
-const game = new Game({
-  trackLength: 30,
-});
-
-require('./src/keyboard')(game); // Передаем экземпляр game в keyboard
-
-// Запуск игры.
-game.play();
+(async () => {
+  const enemy = await Enemy.create(); // Создаём и инициализируем врага
+  const game = new Game({ trackLength: 30, enemy }); // Передаём врага в игру
+  // Запуск игры и другие действия
+  game.play();
+})();
