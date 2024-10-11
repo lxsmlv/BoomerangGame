@@ -1,27 +1,15 @@
 // Враг.
+const { emojiEnemies } = require('../../crud/DB-function');
 
 class Enemy {
   constructor() {
-    this.generateSkin();
+    this.skin = null;
     this.position = 30;
   }
 
-  generateSkin() {
-    const skins = [
-      '👾',
-      '💀',
-      '👹',
-      '👻',
-      '👽',
-      '👿',
-      '💩',
-      '🤡',
-      '🤺',
-      '🧛',
-      '🧟',
-      '🎃',
-    ];
-    this.skin = skins[Math.floor(Math.random() * skins.length)];
+  async initialize() {
+    this.skin = await emojiEnemies();
+
   }
 
   moveLeft() {
@@ -36,3 +24,9 @@ class Enemy {
 }
 
 module.exports = Enemy;
+
+// вот так надо будет объявлять Enemy
+(async () => {
+  const p = new Enemy();
+  await p.initialize();
+})();
