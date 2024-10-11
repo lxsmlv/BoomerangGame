@@ -4,63 +4,39 @@ module.exports = {
     await queryInterface.bulkInsert('Enemies', [
       {
         emoji: '👾',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         emoji: '💀',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         emoji: '👹',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         emoji: '👻',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         emoji: '👽',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         emoji: '👿',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         emoji: '💩',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         emoji: '🤡',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         emoji: '🤺',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         emoji: '🧛',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         emoji: '🧟',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         emoji: '🎃',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
     ], {});
   },

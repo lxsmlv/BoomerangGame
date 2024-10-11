@@ -4,28 +4,18 @@ module.exports = {
     await queryInterface.bulkInsert('Users', [
       {
         name: 'Сашка Самойлов',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         name: 'Полина Павлова',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         name: 'Тимурчик',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         name: 'Тимур',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         name: 'Денис',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
     ], {});
   },

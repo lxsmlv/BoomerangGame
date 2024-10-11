@@ -9,5 +9,10 @@
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "rules": { "max-len": "off" }
+  "rules": {
+    "max-len": "off",
+    "no-unused-vars": "off",
+    "no-undef": "off",
+    "no-shadow": "off"
+  }
 }

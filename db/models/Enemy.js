@@ -1,21 +1,20 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
-    static associate({ Data }) {
-      this.hasOne(Data, { foreignKey: 'userId' });
+  class Enemies extends Model {
+    static associate(models) {
     }
   }
 
-  User.init({
-    name: {
+  Enemies.init({
+    emoji: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   }, {
     sequelize,
-    modelName: 'User',
+    modelName: 'Enemy', // Имя модели в PascalCase
   });
 
-  return User;
+  return Enemies;
 };

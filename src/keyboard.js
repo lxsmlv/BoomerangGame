@@ -1,7 +1,7 @@
 const keypress = require('keypress');
 
 // Теперь мы экспортируем функцию, которая принимает экземпляр game
-module.exports = function (game) {
+function keyboard(game) {
   const keyboard = {
     a: () => game.hero.moveLeft(),
     d: () => game.hero.moveRight(game.track),
@@ -27,4 +27,6 @@ module.exports = function (game) {
   }
 
   runInteractiveConsole();
-};
+}
+
+module.exports = keyboard;

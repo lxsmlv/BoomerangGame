@@ -1,7 +1,7 @@
-const Hero = require('./game-models/Hero');
-const Boomerang = require('./game-models/Boomerang');
+const Hero = require('./Hero');
+const Boomerang = require('./Boomerang');
 const View = require('./View');
-const Enemy = require('./game-models/Enemy'); // Убедитесь, что путь правильный
+const Enemy = require('./Enemy'); // Убедитесь, что путь правильный
 
 // Основной класс игры.
 // Тут будут все настройки, проверки, запуск.
@@ -11,6 +11,7 @@ class Game {
     this.enemy = enemy; // Присваиваем переданного врага
     this.boomerang = new Boomerang({ position: 0 });
     this.hero = new Hero({ position: 0, boomerang: this.boomerang });
+    this.boomerang.position = this.hero.position;
     this.view = new View();
     this.track = [];
     this.killedEnemy = 0;
