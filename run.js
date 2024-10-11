@@ -5,5 +5,6 @@ const Enemy = require('./src/game-models/Enemy'); // Убедитесь, что 
   const enemy = await Enemy.create(); // Создаём и инициализируем врага
   const game = new Game({ trackLength: 30, enemy }); // Передаём врага в игру
   // Запуск игры и другие действия
+  require('./src/keyboard')(game);
   game.play();
 })();

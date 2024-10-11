@@ -1,6 +1,7 @@
 const Hero = require('./game-models/Hero');
 const Boomerang = require('./game-models/Boomerang');
 const View = require('./View');
+const Enemy = require('./game-models/Enemy'); // Убедитесь, что путь правильный
 
 // Основной класс игры.
 // Тут будут все настройки, проверки, запуск.
@@ -26,13 +27,14 @@ class Game {
 
   check() {
     if (this.hero.position === this.enemy.position) {
-      this.hero.die();
+      this.hero.die(this.killedEnemy, this.gameTime);
     }
   }
 
-  checkEnemy() {
+  async checkEnemy() {
     if (!this.enemy.isAlive) { // Если враг мёртв
-      this.enemy = new Enemy({ position: 30 }); // Создать нового врага
+      this.killedEnemy += 1;
+      this.enemy = await Enemy.create(); // Создать нового врага
     }
   }
 
@@ -48,6 +50,7 @@ class Game {
       this.checkEnemy();
       this.regenerateTrack();
       this.view.render(this.track);
+      this.gameTime += 10;
     }, 10); // Интервал для обновления игры
 
     this.enemyMovementInterval = setInterval(() => {

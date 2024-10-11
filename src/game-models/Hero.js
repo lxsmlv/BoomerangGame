@@ -21,9 +21,11 @@ class Hero {
     this.boomerang.fly(enemy);
   }
 
-  die() {
+  die(killedEnemy, gameTime) {
     this.skin = '💀';
-    console.log('YOU ARE DEAD!💀');
+    console.log('Ты умер!💀');
+    console.log(`Убито врагов: ${killedEnemy}`);
+    console.log(`Время игры: ${gameTime / 1000} секунд`);
     process.exit();
   }
 }

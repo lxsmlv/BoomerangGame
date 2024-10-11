@@ -2,9 +2,9 @@
 const { emojiEnemies } = require('../../crud/DB-function');
 
 class Enemy {
-  constructor({ position }) {
-    this.skin = '🤠';
-    this.position = position;
+  constructor() {
+    this.skin = null;
+    this.position = 30;
     this.isAlive = true;
   }
 
@@ -30,9 +30,3 @@ class Enemy {
 }
 
 module.exports = Enemy;
-
-// вот так надо будет объявлять Enemy
-// (async () => {
-//   const p = new Enemy();
-//   await p.initialize();
-// })();
