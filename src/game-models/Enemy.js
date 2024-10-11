@@ -2,14 +2,14 @@
 const { emojiEnemies } = require('../../crud/DB-function');
 
 class Enemy {
-  constructor() {
-    this.skin = null;
-    this.position = 30;
+  constructor({ position }) {
+    this.skin = '🤠';
+    this.position = position;
+    this.isAlive = true;
   }
 
   async initialize() {
     this.skin = await emojiEnemies();
-
   }
 
   moveLeft() {
@@ -19,14 +19,14 @@ class Enemy {
 
   die() {
     this.position = null;
-    console.log('Enemy is dead!');
+    this.isAlive = false;
   }
 }
 
 module.exports = Enemy;
 
 // вот так надо будет объявлять Enemy
-(async () => {
-  const p = new Enemy();
-  await p.initialize();
-})();
+// (async () => {
+//   const p = new Enemy();
+//   await p.initialize();
+// })();

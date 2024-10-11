@@ -5,7 +5,7 @@ module.exports = function (game) {
   const keyboard = {
     a: () => game.hero.moveLeft(),
     d: () => game.hero.moveRight(game.track),
-    p: () => game.hero.attack(game.enemy.position),
+    p: () => game.hero.attack(game.enemy),
   };
 
   function runInteractiveConsole() {
