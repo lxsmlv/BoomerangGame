@@ -1,22 +1,13 @@
-// Умеешь работать с keypress? Попробуй разобраться в этом файле.
-// Вместо keypress можно использовать и стандартный readline.
-// Главное не используй всё вместе!
-
 const keypress = require('keypress');
-
-// Управление.
-// Настроим соответствия нажатий на клавиши и действий в игре.
+const game = require('../run'); // Замените на фактический путь
 
 const keyboard = {
-  q: () => console.log('q'),
-  w: () => console.log('w'),
-  e: () => console.log('e'),
-  r: () => console.log('r'),
-  t: () => console.log('t'),
-  y: () => console.log('y'),
+  a: () => game.moveHero('left'),
+  d: () => game.moveHero('right'),
+  // w: () => console.log('e'),
+  // s: () => console.log('r'),
+  // Enter: () => console.log('t'),
 };
-
-// Какая-то функция.
 
 function runInteractiveConsole() {
   keypress(process.stdin);
@@ -32,9 +23,7 @@ function runInteractiveConsole() {
       }
     }
   });
-  process.stdin.setRawMode(true);
+  process.stdin.setRawMode(true); // включение сырого режима, то есть нажатие кнопок не дожидается нажатия Enter, а сразу передается в программу
 }
-
-// Давай попробуем запустить этот скрипт!
 
 runInteractiveConsole();

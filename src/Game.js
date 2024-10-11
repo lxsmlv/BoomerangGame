@@ -20,6 +20,14 @@ class Game {
     this.regenerateTrack();
   }
 
+  moveHero(direction) {
+    if (direction === 'left') {
+      this.hero.position = Math.max(0, this.hero.position - 1); // Двигаем влево
+    } else if (direction === 'right') {
+      this.hero.position = Math.min(this.trackLength - 1, this.hero.position + 1); // Двигаем вправо
+    }
+  }
+
   regenerateTrack() {
     // Сборка всего необходимого (герой, враг(и), оружие)
     // в единую структуру данных
