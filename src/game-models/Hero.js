@@ -17,8 +17,8 @@ class Hero {
     }
   }
 
-  attack() {
-    this.boomerang.fly();
+  attack(targetPosition) {
+    this.boomerang.fly(targetPosition);
   }
 
   die() {
