@@ -4,27 +4,36 @@ class Boomerang {
     this.position = position;
   }
 
-  fly(targetPosition) {
+  fly(enemy) {
     const interval = setInterval(() => {
       // Если бумеранг достиг целевой позиции, остановить
-      if (this.position >= targetPosition) {
+      if (this.position >= enemy.position) {
         clearInterval(interval); // Остановить движение к врагу
-        this.return(); // Вернуться обратно
+
+        // Проверяем, убивает ли бумеранг врага
+        if (this.position === enemy.position) {
+          enemy.die(); // Убить врага
+        }
+
+        this.return(enemy); // Вернуться обратно
       } else {
         this.moveRight(); // Двигаемся вправо
       }
-    }, 100); // Задержка в 100 мс для движения
+    }, 50); // Задержка в 100 мс для движения
   }
 
-  return() {
+  return(enemy) {
     const interval = setInterval(() => {
       // Если бумеранг вернулся на исходную позицию, остановить
       if (this.position <= 0) {
         clearInterval(interval); // Остановить возврат
       } else {
         this.moveLeft(); // Двигаемся влево
+        if (this.position === enemy.position) {
+          enemy.die(); // Убить врага
+        }
       }
-    }, 100); // Задержка в 100 мс для возврата
+    }, 50); // Задержка в 100 мс для возврата
   }
 
   moveLeft() {

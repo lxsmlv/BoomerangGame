@@ -30,12 +30,29 @@ class Game {
     }
   }
 
+  checkEnemy() {
+    if (!this.enemy.isAlive) { // Если враг мёртв
+      this.enemy = new Enemy({ position: 30 }); // Создать нового врага
+    }
+  }
+
   play() {
-    setInterval(() => {
+    // Запускаем интервал для движения врага
+    this.enemyMovementInterval = setInterval(() => {
+      this.enemy.moveLeft();
+    }, 250); // Интервал для движения врага
+
+    // Запускаем интервал для обновления игры
+    this.gameUpdateInterval = setInterval(() => {
       this.check();
+      this.checkEnemy();
       this.regenerateTrack();
       this.view.render(this.track);
-    }, 100);
+    }, 10); // Интервал для обновления игры
+
+    this.enemyMovementInterval = setInterval(() => {
+      this.enemy.moveLeft();
+    }, 150); // Интервал для движения врага
   }
 }
 
