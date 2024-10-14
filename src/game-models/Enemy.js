@@ -6,11 +6,12 @@ class Enemy {
 
   moveLeft() {
     // Идём влево.
-    this.position -= 1;
+    this.position.x -= 1;
   }
 
   die() {
-    this.position = null;
+    this.position.x = -5;
+    this.position.y = -5;
   }
 }
 

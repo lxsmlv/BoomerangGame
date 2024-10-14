@@ -4,6 +4,8 @@ module.exports = function keyboard(game) {
   const actions = {
     a: () => { game.hero.moveLeft(); game.boomerang.moveLeft(); },
     d: () => { game.hero.moveRight(); game.boomerang.moveRight(); },
+    w: () => { game.hero.moveUp(); game.boomerang.moveUp(); },
+    s: () => { game.hero.moveDown(); game.boomerang.moveDown(); },
     p: () => { if (!game.boomerang.flying) { game.boomerang.fly(); } },
     e: () => game.stopGame(),
   };

@@ -46,13 +46,10 @@ async function startGame(name) {
   console.clear();
   console.log('Начинаем игру...');
 
-  // Генерируем врага с помощью getEnemy
-  const enemy = await getEnemy();
-
-  await delay(1000);
+  // await delay(1000);
 
   // Генерируем экземпляр игры
-  const game = new Game({ trackLength: 30, enemy });
+  const game = new Game({ trackLength: 30, trackHeight: 6, enemiesCount: 10 });
 
   // Навешиваем обработчик событий на клавиатуру
   keyboard(game);
