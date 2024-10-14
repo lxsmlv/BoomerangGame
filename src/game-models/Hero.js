@@ -1,31 +1,36 @@
-// Наш герой.
-
-class Hero {
-  constructor({ position }) {
-    this.skin = '🤠'; // можете использовать любые emoji '💃'
+module.exports = class Hero {
+  constructor({ position, trackLength, trackHeight }) {
+    this.skin = '💃';
     this.position = position;
+    this.trackLength = trackLength;
+    this.trackHeight = trackHeight;
   }
 
   moveLeft() {
-    // Идём влево.
-    this.position -= 1;
+    if (this.position.x !== 0) {
+      this.position.x -= 1;
+    }
   }
 
   moveRight() {
-    // Идём вправо.
-    this.position += 1;
+    if (this.position.x < this.trackLength - 1) {
+      this.position.x += 1;
+    }
   }
 
-  attack() {
-    // Атакуем.
-    this.boomerang.fly();
+  moveUp() {
+    if (this.position.y > 0) {
+      this.position.y -= 1;
+    }
+  }
+
+  moveDown() {
+    if (this.position.y < this.trackHeight - 1) {
+      this.position.y += 1;
+    }
   }
 
   die() {
     this.skin = '💀';
-    console.log('YOU ARE DEAD!💀');
-    process.exit();
   }
-}
-
-module.exports = Hero;
+};

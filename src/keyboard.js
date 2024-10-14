@@ -1,40 +1,33 @@
-// Умеешь работать с keypress? Попробуй разобраться в этом файле.
-// Вместо keypress можно использовать и стандартный readline.
-// Главное не используй всё вместе!
-
 const keypress = require('keypress');
 
-// Управление.
-// Настроим соответствия нажатий на клавиши и действий в игре.
+module.exports = function keyboard(game) {
+  const actions = {
+    a: () => { game.hero.moveLeft(); game.boomerang.moveLeft(); },
+    d: () => { game.hero.moveRight(); game.boomerang.moveRight(); },
+    w: () => { game.hero.moveUp(); game.boomerang.moveUp(); },
+    s: () => { game.hero.moveDown(); game.boomerang.moveDown(); },
+    p: () => { if (!game.boomerang.flying) { game.boomerang.fly(); } },
+    e: () => game.stopGame(),
+  };
 
-const keyboard = {
-  q: () => console.log('q'),
-  w: () => console.log('w'),
-  e: () => console.log('e'),
-  r: () => console.log('r'),
-  t: () => console.log('t'),
-  y: () => console.log('y'),
+  process.stdin.resume(); // Начинаем прослушивание stdin
+
+  function runInteractiveConsole() {
+    keypress(process.stdin);
+    process.stdin.on('keypress', (ch, key) => {
+      if (key) {
+        // Вызывает команду, соответствующую нажатой кнопке.
+        if (Object.prototype.hasOwnProperty.call(actions, key.name)) {
+          actions[key.name]();
+        }
+        // Прерывание программы.
+        if (key.ctrl && key.name === 'c') {
+          console.log('Программа завершена.');
+          process.exit();
+        }
+      }
+    });
+  }
+
+  runInteractiveConsole();
 };
-
-// Какая-то функция.
-
-function runInteractiveConsole() {
-  keypress(process.stdin);
-  process.stdin.on('keypress', (ch, key) => {
-    if (key) {
-      // Вызывает команду, соответствующую нажатой кнопке.
-      if (key.name in keyboard) {
-        keyboard[key.name]();
-      }
-      // Прерывание программы.
-      if (key.ctrl && key.name === 'c') {
-        process.exit();
-      }
-    }
-  });
-  process.stdin.setRawMode(true);
-}
-
-// Давай попробуем запустить этот скрипт!
-
-runInteractiveConsole();
