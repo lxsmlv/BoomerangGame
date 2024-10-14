@@ -1,21 +1,7 @@
-// Враг.
-const { emojiEnemies } = require('../../crud/DB-function');
-
 class Enemy {
-  constructor() {
-    this.skin = null;
-    this.position = 30;
-    this.isAlive = true;
-  }
-
-  async initialize() {
-    this.skin = await emojiEnemies();
-  }
-
-  static async create() {
-    const enemy = new Enemy(); // Создаём экземпляр врага
-    await enemy.initialize(); // Инициализируем его
-    return enemy; // Возвращаем инициализированный экземпляр
+  constructor({ enemy, position }) {
+    this.skin = enemy.emoji;
+    this.position = position;
   }
 
   moveLeft() {
@@ -25,7 +11,6 @@ class Enemy {
 
   die() {
     this.position = null;
-    this.isAlive = false;
   }
 }
 

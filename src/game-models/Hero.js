@@ -1,8 +1,8 @@
-class Hero {
-  constructor({ position, boomerang }) {
-    this.skin = '🤠'; // можете использовать любые emoji '💃'
+module.exports = class Hero {
+  constructor({ position, trackLength }) {
+    this.skin = '💃';
     this.position = position;
-    this.boomerang = boomerang;
+    this.trackLength = trackLength;
   }
 
   moveLeft() {
@@ -11,23 +11,13 @@ class Hero {
     }
   }
 
-  moveRight(track) {
-    if (this.position < track.length) {
+  moveRight() {
+    if (this.position < this.trackLength) {
       this.position += 1;
     }
   }
 
-  attack(enemy) {
-    this.boomerang.fly(enemy);
-  }
-
-  die(killedEnemy, gameTime) {
+  die() {
     this.skin = '💀';
-    console.log('Ты умер!💀');
-    console.log(`Убито врагов: ${killedEnemy}`);
-    console.log(`Время игры: ${gameTime / 1000} секунд`);
-    process.exit();
   }
-}
-
-module.exports = Hero;
+};

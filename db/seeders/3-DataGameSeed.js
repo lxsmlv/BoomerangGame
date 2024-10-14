@@ -2,7 +2,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'Data',
+      'GameData',
       [
         {
           gameTime: 90,
@@ -29,17 +29,12 @@ module.exports = {
           enemiesKilled: 50,
           userId: 5,
         },
-        {
-          gameTime: 340,
-          enemiesKilled: 50,
-          userId: 5,
-        },
       ],
       {},
     );
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('resultGames', null, {});
+    await queryInterface.bulkDelete('GameData', null, {});
   },
 };
