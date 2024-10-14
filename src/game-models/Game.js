@@ -1,3 +1,5 @@
+const player = require('play-sound')();
+const path = require('path');
 const Hero = require('./Hero');
 const Boomerang = require('./Boomerang');
 const Enemy = require('./Enemy');
@@ -33,6 +35,27 @@ module.exports = class Game {
     this.generateEnemies(enemiesCount);
     this.regenerateTrack();
     setInterval(() => this.regenerateEnemies(enemiesCount), 2000);
+  }
+
+  static playNewGameSound() {
+    const soundPath = path.resolve(__dirname, '../sounds/congratulations.wav');
+    player.play(soundPath, (err) => {
+      if (err) console.error(`Ошибка при воспроизведении звука: ${err}`);
+    });
+  }
+
+  static playDeathSound() {
+    const soundPath = path.resolve(__dirname, '../sounds/system-fault.wav');
+    player.play(soundPath, (err) => {
+      if (err) console.error(`Ошибка при воспроизведении звука: ${err}`);
+    });
+  }
+
+  static playGameOverSound() {
+    const soundPath = path.resolve(__dirname, '../sounds/twirl.wav');
+    player.play(soundPath, (err) => {
+      if (err) console.error(`Ошибка при воспроизведении звука: ${err}`);
+    });
   }
 
   stopGame() {
@@ -103,6 +126,8 @@ module.exports = class Game {
       if (this.hero.position.x === enemy.position.x && this.hero.position.y === enemy.position.y) {
         this.hero.die(); // Убийство героя
         this.gameOver = true; // Устанавливаем флаг завершения игры
+        Game.playGameOverSound(); // Звук проигрыша
+        return; // Чтобы не посчитало лишних врагов, так как за персонажем бумеранг, и он убьет врага даже если герой умер
       }
 
       // удаление врагов, которые вышли за поле игры
@@ -116,6 +141,9 @@ module.exports = class Game {
         this.enemiesKilled += 1;
         // Удаляем поверженного врага из массива
         this.enemies = this.enemies.filter((e) => e !== enemy);
+
+        // Звук убийства врага
+        Game.playDeathSound();
       }
     });
   }
@@ -124,6 +152,9 @@ module.exports = class Game {
     return new Promise((resolve) => {
       // Запуск счетчика времени
       this.startTime = Date.now();
+
+      // Звук начала игры
+      Game.playNewGameSound();
 
       // Запускаем интервал движения врага
       this.enemyMovementInterval = setInterval(() => {
